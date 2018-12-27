@@ -167,3 +167,12 @@ textArea = new TextArea();
 ScrollPane scrollPane = new ScrollPane(textArea);
 root.getChildren().add(scrollPane);
 ```
+
+### 精彩战斗回顾
+- 本次提交中包含了一个rs3.txt文件，存储了到目前为止我认为最精彩的一场战斗，理由如下
+  - 各个生物体的移动都比较常规，使得战斗流程不至于过慢
+  - 在战斗过程中，妖精阵营方在流程到一半时仅剩下蝎子精1人，而葫芦阵营还剩6个战斗力，但蝎子精仍顽强地连斩4人，虽然最终倒下，但值得记录，下面是战斗半程和战斗结束后的截图
+
+![战斗半程](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/InBattleRs.png)
+
+![战斗结束](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/EndBattleRs.png)
