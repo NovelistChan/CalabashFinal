@@ -1,7 +1,11 @@
 # Java程序设计 FinalProject: CalabashProject(葫芦娃VS妖精)
 ###### 161220022 陈哲霏 2018/12/27
 ### 设计思想
-
+- 主体分类
+  - 将整个工程所要操作的主体分为: 生物体、战场、GUI三个部分，其中生物体与战场共用关系:阵型，三个主体共用关系:战斗流程与文件I/O
+- 实现流程
+  - 类似上帝一样，创建各个生物的实体、战场实体、GUI框架->创建它们在战场中的映射->创建它们与GUI的映射->实现它们与文件的关联->用一个看不见的手(BattlePhase)来管理战斗流程，并将线程的运行体现在GUI上
+  
 ### 工程概述
 - 总工程实现了图形化界面下的葫芦娃VS妖精对战模型，进入游戏时界面如下(已按下Q随机布阵一次)：
 
@@ -13,8 +17,13 @@
 
 - 在战斗结束后，用户可按下S键来存储本次对战流程的全部信息。在战斗开始前和战斗结束后，用户均可通过按下L键来加载某次记录文件，该记录文件将自动播放至战斗结束。文件列表界面如下：
 
+![保存文件页面(读取界面与此相同)](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/SaveFile.png)
+
 ### 类与模块划分
 - 总工程共分为5个包：creature、util、deploy、board、gui.
+
+![Creature包内的UML图](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/CreaturePakage.png)
+
   - creature包:包含了所有生物体的类以及两个生物阵营的管理类(CalabashManage与MonsterManage)，所有生物体均继承自父类Being，Being继承了Runnable接口以实现线程工作。
   - util包:包含了一个cheer接口(实际上并没有在GUI中体现)，因为还未想到怎么很好地去实现加油助威的方法，故未加入GUI。
   - deploy包:包含了生物体所能排列形成的共8个阵型类，每个类中实现了阵型的排列方法，在board包中被调用来将战场与阵法相连通。
