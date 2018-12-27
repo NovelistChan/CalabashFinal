@@ -21,9 +21,6 @@
 
 ### 类与模块划分
 - 总工程共分为5个包：creature、util、deploy、board、gui.
-
-![Creature包内的UML图](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/CreaturePakage.png)
-
   - creature包:包含了所有生物体的类以及两个生物阵营的管理类(CalabashManage与MonsterManage)，所有生物体均继承自父类Being，Being继承了Runnable接口以实现线程工作。
   - util包:包含了一个cheer接口(实际上并没有在GUI中体现)，因为还未想到怎么很好地去实现加油助威的方法，故未加入GUI。
   - deploy包:包含了生物体所能排列形成的共8个阵型类，每个类中实现了阵型的排列方法，在board包中被调用来将战场与阵法相连通。
@@ -32,6 +29,39 @@
   
 ### Java面向对象与本次工程
 - 继承与多态
+  - creature包内的UML图，展示了各个生物体类之间的继承关系
+
+![Creature包内的UML图](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/CreaturePakage.png)
+
+  - 以Calabash为例的子类生成展现继承的过程，特别地，此处还使用了枚举类(CalabashVariety定义了所有葫芦娃的可枚举实体)
+'''java
+public class CalabashBro extends GoodCreature{
+    private String color;
+    private int rank;
+    public CalabashBro(int i){
+        super(CalabashVariety.values()[i].getBroName());
+        this.color = CalabashVariety.values()[i].getBroColor();
+        this.rank = CalabashVariety.values()[i].getBroNum();
+        this.image = CalabashVariety.values()[i].getBroImage();
+        setImageView();
+        setLabel();
+    }
+    ...
+}
+'''
+
+  - 多态过程主要体现在BattlePhase中对生物总体的管理
+'''java
+public void setCreatures(){
+        for(int i = 0; i < 7; i++){
+            creatures[i] = bros[i];
+            creatures[i + 7] = monsters[i];
+        }
+        creatures[14] = GF;
+        creatures[15] = SF;//用一个creatures数组管理所有初始化的生物体
+    }
+'''
+  
 - 异常处理
 - 输入输出
 - 并发与多线程
