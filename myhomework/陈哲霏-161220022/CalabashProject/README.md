@@ -63,8 +63,73 @@ public void setCreatures(){
 ```
   
 - 异常处理
+  - 以存取文件为例
+```java
+public void saveToHistory(File file){
+        FileWriter fileWriter = null;
+        try{
+            fileWriter = new FileWriter(file);
+            ...
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+```
+
 - 输入输出
+  - 除上述的写文件外，添加了键盘监听输入
+```java
+Scene scene = new Scene(BattlePhase.getPhase().root, 1200, 660);
+scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+         @Override
+         public void handle(KeyEvent event) {
+             try{
+                 if(event.getCode() == KeyCode.Q){//改变初始阵型
+                            ...
+                 } else if(event.getCode() == KeyCode.SPACE){//开始战斗
+                            ...
+                 } else if(event.getCode() == KeyCode.L){//读档
+                            ...
+                 } else if(event.getCode() == KeyCode.S){//存档
+                            ...
+                 }
+             } catch(Exception e){
+                 e.printStackTrace();
+             }
+         }
+});
+```
+
 - 并发与多线程
-- Lamda表达式
+  - 各个生物体均为一个线程，并发处理主要体现在线程的run()函数内部
+```java
+public class Being implements Runnable{
+         ...
+         @override
+         public void run(){
+                  ...
+                  //当要处理生物体移动时
+                  synchronized (ChessBoard.getBoard()){//一个棋盘位置只能由一个生物占领
+                          ...
+                  }
+                  //当要处理生物体战斗时
+                  synchronized (ChessBoard.getBoard()) {
+                          Being target = ChessBoard.getBoard().getChessBoardView()[i][j].element;
+                          if (target.getName() != "空") {
+                                  synchronized (target) {//一个战斗流程中的两个角色不允许被另一个战斗流程包含
+                                          ...
+                                  }
+                          }
+                  }
+         }
+}
+```
+
 - 泛型
 - 设计模式
