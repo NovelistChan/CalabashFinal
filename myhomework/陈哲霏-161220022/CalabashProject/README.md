@@ -131,5 +131,39 @@ public class Being implements Runnable{
 }
 ```
 
-- 泛型
+- 集合类型
+  - 在历史记录设置时使用了ArrayList
+```java
+public class FileSystem {
+    private static FileSystem instance = new FileSystem();
+    private ArrayList<ArrayList<String>> history;
+    ...
+    ...
+    }
+```
+
 - 设计模式
+  - 装饰器模式
+```java
+FileWriter fileWriter = null;
+BufferedReader bufferedReader = null;
+```
+
+  - 迭代器模式
+```java
+Iterator<ArrayList<String>> iterator = history.iterator();
+while(iterator.hasNext()){
+    for(String s : iterator.next()){
+         fileWriter.write(s);
+    }
+}   
+```
+
+  - 组合模式
+```java
+root = new Pane();
+root.getChildren().add(backgroundView);
+textArea = new TextArea();
+ScrollPane scrollPane = new ScrollPane(textArea);
+root.getChildren().add(scrollPane);
+```
