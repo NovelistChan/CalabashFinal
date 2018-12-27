@@ -34,7 +34,7 @@
 ![Creature包内的UML图](https://github.com/NovelistChan/CalabashFinal/blob/master/myhomework/%E9%99%88%E5%93%B2%E9%9C%8F-161220022/CalabashProject/CreaturePakage.png)
 
   - 以Calabash为例的子类生成展现继承的过程，特别地，此处还使用了枚举类(CalabashVariety定义了所有葫芦娃的可枚举实体)
-'''java
+```java
 public class CalabashBro extends GoodCreature{
     private String color;
     private int rank;
@@ -48,10 +48,10 @@ public class CalabashBro extends GoodCreature{
     }
     ...
 }
-'''
+```
 
   - 多态过程主要体现在BattlePhase中对生物总体的管理
-'''java
+```java
 public void setCreatures(){
         for(int i = 0; i < 7; i++){
             creatures[i] = bros[i];
@@ -60,7 +60,7 @@ public void setCreatures(){
         creatures[14] = GF;
         creatures[15] = SF;//用一个creatures数组管理所有初始化的生物体
     }
-'''
+```
   
 - 异常处理
 - 输入输出
